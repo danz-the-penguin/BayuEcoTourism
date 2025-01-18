@@ -18,9 +18,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $email = $_POST['email'];
+    $user_type = $_POST['user_type']; // 'admin' or 'user'
 
     // Prepare and bind
-    $stmt = $conn->prepare("INSERT INTO Users (username, password, email) VALUES (?, ?, ?)");
+    if ($user_type === 'admin') {
+        $stmt = $conn->prepare("INSERT INTO Admins (username, password, email) VALUES (?, ?, ?)");
+    } else {
+        $stmt = $conn->prepare("INSERT INTO Users (username, password, email) VALUES (?, ?, ?)");
+    }
     $stmt->bind_param("sss", $username, $password, $email);
 
     // Execute the statement
@@ -50,6 +55,10 @@ $conn->close();
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>
         <input type="email" name="email" placeholder="Email" required>
+        <select name="user_type" required>
+            <option value="user">User </option>
+            <option value="admin">Admin</option>
+        </select>
         <button type="submit">Register</button>
     </form>
     <?php
