@@ -1,0 +1,18 @@
+<?php
+// Database configuration
+$databaseHost = "localhost";
+$username = "root";
+$password = ""; 
+$databaseName = "zoo_management";
+$url = "http://localhost/zoo_management"; 
+
+// Create connection
+$conn = mysqli_connect($databaseHost, $username, $password, $databaseName);
+
+// Check connection
+if (mysqli_connect_errno())
+{
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    exit();
+} 
+?>
