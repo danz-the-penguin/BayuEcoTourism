@@ -11,7 +11,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -30,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `tbladmin` (
   `ID` int(10) NOT NULL,
   `AdminName` varchar(120) DEFAULT NULL,
-  `UserName` varchar(50) DEFAULT NULL,
+  `User Name` varchar(50) DEFAULT NULL,
   `MobileNumber` bigint(10) DEFAULT NULL,
   `Email` varchar(120) DEFAULT NULL,
   `Password` varchar(120) DEFAULT NULL,
@@ -41,7 +40,7 @@ CREATE TABLE `tbladmin` (
 -- Dumping data for table `tbladmin`
 --
 
-INSERT INTO `tbladmin` (`ID`, `AdminName`, `UserName`, `MobileNumber`, `Email`, `Password`, `AdminRegdate`) VALUES
+INSERT INTO `tbladmin` (`ID`, `AdminName`, `User Name`, `MobileNumber`, `Email`, `Password`, `AdminRegdate`) VALUES
 (1, 'Admin', 'admin', 1234567890, 'admin@gmail.com', 'f925916e2754e5e03f75dd58a5733251', '2024-01-31 21:38:00');
 
 -- --------------------------------------------------------
@@ -69,7 +68,7 @@ INSERT INTO `tblanimal` (`ID`, `AnimalName`, `CageNumber`, `FeedNumber`, `Breed`
 (1, 'Giraffe', 12300, 'FN-123', 'Masai giraffe', '694cb29edd30cd1d86dda55dd904ee4b1596609931.jpg', 'The Masai giraffe (Giraffa camelopardalis tippelskirchii), also spelled Maasai giraffe, also called Kilimanjaro giraffe, is the largest subspecies of giraffe. It is native to East Africa. The Masai giraffe can be found in central and southern Kenya and in Tanzania.', '2024-02-14 18:30:00'),
 (2, 'Giraffe', 12301, 'F-5688', 'Reticulated giraffe', '7fdc1a630c238af0815181f9faa190f51596609868.jpg', 'The reticulated giraffe (Giraffa camelopardalis reticulata), also known as the Somali giraffe, is a subspecies of giraffe native to the Horn of Africa. It lives in Somalia, southern Ethiopia, and northern Kenya. There are approximately 8,500 individuals living in the wild.', '2024-02-14 18:30:00'),
 (3, 'Tiger', 12302, 'FN-809', 'Bengal Tiger', 'e692bd84570d9f467b75af761bf15c7c1596609789.jpg', 'The Bengal tiger is a tiger from a specific population of the Panthera tigris tigris subspecies that is native to the Indian subcontinent. It is threatened by poaching, loss, and fragmentation of habitat, and was estimated at comprising fewer than 2,500 individuals by 2011.', '2024-02-14 18:30:00'),
-(4, 'Tiger', 12303, 'FN-798', ' Indochinese Tiger', '031a51aa205bd3138f7afeb0d86999e51596611280.png', 'The Indochinese tiger is a tiger from a specific population of the Panthera tigris tigris subspecies that is native to Southeast Asia. This population occurs in Myanmar, Thailand, Laos, Vietnam, Cambodia and southwestern China.', '2024-02-14 18:30:00'),
+(4, 'Tiger', 12303, 'FN-798', 'Indochinese Tiger', '031a51aa205bd3138f7afeb0d86999e51596611280.png', 'The Indochinese tiger is a tiger from a specific population of the Panthera tigris tigris subspecies that is native to Southeast Asia. This population occurs in Myanmar, Thailand, Laos, Vietnam, Cambodia and southwestern China.', '2024-02-14 18:30:00'),
 (5, 'Tiger', 12304, 'FN-787', 'Siberian Tiger', '1e6ae4ada992769567b71815f124fac51596609708.jpg', 'The Siberian tiger is a tiger from a specific population of the Panthera tigris tigris subspecies that is native to the Russian Far East, Northeast China, and possibly North Korea. It once ranged throughout the Korean Peninsula, north China, Russian Far East, and eastern Mongolia.', '2024-02-14 18:30:00'),
 (6, 'Tiger', 12305, 'FN-345', 'Indochinese Tiger', '37b3f2f8b979f990fbe8bbf02fb87ddb1596609488.jpg', 'The Indochinese tiger is a tiger from a specific population of the Panthera tigris tigris subspecies that is native to Southeast Asia. This population occurs in Myanmar, Thailand, Laos, Vietnam, Cambodia and southwestern China.', '2024-02-14 18:30:00'),
 (7, 'Bear', 12307, 'FN-0123', 'Sloth Bear', 'efc1a80c391be252d7d777a437f868701596611141.jpg', 'The sloth bear (Melursus ursinus) is a myrmecophagous bear species native to the Indian subcontinent. It feeds on fruits, ants and termites. It is listed as Vulnerable on the IUCN Red List, mainly because of habitat loss and degradation.', '2024-02-14 18:30:00'),
@@ -171,6 +170,132 @@ INSERT INTO `tbltickettype` (`ID`, `TicketType`, `Price`, `CreationDate`) VALUES
 (3, 'Foreigner Adult', '1100', '2024-02-16 06:42:56'),
 (4, 'Foreigner Child', '800', '2024-02-16 06:42:56');
 
+-- --------------------------------------------------------
+
+-- New Tables for Additional Modules
+
+-- User Management
+CREATE TABLE `tblusers` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Username` varchar(50) NOT NULL UNIQUE,
+  `Password` varchar(255) NOT NULL,
+  `Role` ENUM('admin', 'visitor') NOT NULL,
+  `RegistrationDate` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Animal Information Management
+CREATE TABLE `tblanimals` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Species` varchar(200) NOT NULL,
+  `Habitat` varchar(200) NOT NULL,
+  `FeedingTimes` varchar(200) NOT NULL,
+  `Description` mediumtext DEFAULT NULL,
+  `CreationDate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Ticket Booking System
+CREATE TABLE `tblbookings` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `User ID` int(10) NOT NULL,
+  `TicketType` varchar(50) NOT NULL,
+  `BookingDate` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`),
+  FOREIGN KEY (`User ID`) REFERENCES tblusers(`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Zoo Schedule Management
+CREATE TABLE `tblschedules` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `EventName` varchar(200) NOT NULL,
+  `DateTime` datetime NOT NULL,
+  `Description` mediumtext DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Payment System
+CREATE TABLE `tblpayments` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `BookingID` int(10) NOT NULL,
+  `Amount` decimal(10, 2) NOT NULL,
+  `Status` ENUM('pending', 'completed', 'refunded') NOT NULL,
+  `PaymentDate` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`),
+  FOREIGN KEY (`BookingID`) REFERENCES tblbookings(`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Feedback and Reviews
+CREATE TABLE `tblfeedback` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `User ID` int(10) NOT NULL,
+  `Comment` mediumtext NOT NULL,
+  `Rating` int CHECK (Rating >= 1 AND Rating <= 5),
+  `FeedbackDate` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`),
+  FOREIGN KEY (`User ID`) REFERENCES tblusers(`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Zoo Staff Management
+CREATE TABLE `tblstaff` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(100) NOT NULL,
+  `Role` varchar(50) NOT NULL,
+  `Schedule` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Inventory Management
+CREATE TABLE `tblinventory` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `ItemName` varchar(100) NOT NULL,
+  `Quantity` int NOT NULL,
+  `Description` mediumtext DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Reporting and Analytics
+CREATE TABLE `tblreports` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `ReportType` varchar(100) NOT NULL,
+  `Data` mediumtext DEFAULT NULL,
+  `CreatedAt` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Promotions and Discounts
+CREATE TABLE `tblpromotions` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Description` varchar(255) NOT NULL,
+  `Discount` decimal(5, 2) NOT NULL,
+  `StartDate` datetime NOT NULL,
+  `EndDate` datetime NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Special Event Management
+CREATE TABLE `tblevents` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `EventName` varchar(200) NOT NULL,
+  `DateTime` datetime NOT NULL,
+  `Description` mediumtext DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Wildlife Adoption Program
+CREATE TABLE `tbladoptions` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `AnimalID` int(10) NOT NULL,
+  `User ID` int(10) NOT NULL,
+  `MonthlyFee` decimal(10, 2) NOT NULL,
+  `AdoptionDate` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`),
+  FOREIGN KEY (`AnimalID`) REFERENCES tblanimals(`ID`),
+  FOREIGN KEY (`User ID`) REFERENCES tblusers(`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
 --
 -- Indexes for dumped tables
 --
@@ -259,20 +384,45 @@ ALTER TABLE `tbltickettype`
   MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT for new tables
 --
 
---
--- Constraints for table `tblticforeigner`
---
-ALTER TABLE `tblticforeigner`
-  ADD CONSTRAINT `priceid` FOREIGN KEY (`AdultUnitprice`) REFERENCES `tbltickettype` (`Price`);
+ALTER TABLE `tblusers`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
 
---
--- Constraints for table `tblticindian`
---
-ALTER TABLE `tblticindian`
-  ADD CONSTRAINT `pidddd` FOREIGN KEY (`ChildUnitprice`) REFERENCES `tbltickettype` (`Price`);
+ALTER TABLE `tblanimals`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `tblbookings`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `tblschedules`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `tblpayments`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `tblfeedback`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `tblstaff`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `tblinventory`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `tblreports`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `tblpromotions`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `tblevents`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `tbladoptions`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
