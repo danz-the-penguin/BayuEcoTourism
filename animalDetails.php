@@ -84,17 +84,27 @@ $rowcount = mysqli_num_rows($result);
       include("userAuth/modalForm.php");
     ?>
 
-  <main>
+<main>
     <h2 style="text-align: center;">Details</h2>
     <div class="section">
-      <table border="1" align="center">
-        <tr>
-          <td><a href="explore.php?cat=0">All</a></td>
-          <td><a href="explore.php?cat=1">Animal</a></td>
-          <td><a href="explore.php?cat=2">Birds</a></td>
-          <td><a href="explore.php?cat=3">Nature</a></td>
-        </tr>
-      </table>
+        <table border="1" align="center">
+            <tr>
+                <td><a href="explore.php?cat=0">All</a></td>
+                <?php
+                // Fetch categories from the database
+                $sql_categories = "SELECT * FROM category";
+                $result_categories = mysqli_query($conn, $sql_categories);
+
+                // Dynamically generate category links
+                while ($row = mysqli_fetch_assoc($result_categories)) {
+                    echo '<td><a href="explore.php?cat=' . $row['categoryID'] . '">' . htmlspecialchars($row['categoryName']) . '</a></td>';
+                }
+
+                // Free result set
+                mysqli_free_result($result_categories);
+                ?>
+            </tr>
+        </table>
     </div>
     <div class="animal-container">
         <?php
