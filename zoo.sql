@@ -62,7 +62,12 @@ INSERT INTO `category` (`categoryID`, `categoryName`, `categoryDesc`, `createDat
 (7, 'aquatic', 'watching aquatic animals', '2024-12-24'),
 (8, 'insects', 'watching insects', '2024-12-24'),
 (9, 'felines', 'watching felines', '2024-12-24'),
-(10, 'nature', 'trails and view', '2024-12-04 11:38:01');
+(10, 'proboscidea', 'watching proboscidea', '2024-12-24'),
+(11, 'ungulates', 'watching ungulates', '2024-12-24'),
+(12, 'carnivores', 'watching carnivores', '2024-12-24'),
+(13, 'primate', 'watching primates', '2024-12-24'),
+(14, 'suiformes', 'watching suiformes', '2024-12-24'),
+(15, 'nature', 'trails and view', '2024-12-04 11:38:01');
 
 -- --------------------------------------------------------
 
@@ -84,13 +89,13 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`productID`, `productName`, `productImg`, `categoryID`, `productQty`, `productPrice`) VALUES
-(1, 'Tiger', 'uploads/tiger.jpg', 1, 5, 8.90),
-(2, 'Elephant', 'uploads/elephant.jpg', 1, 7, 9.90),
+(1, 'Tiger', 'uploads/tiger.jpg', 9, 5, 8.90),
+(2, 'Elephant', 'uploads/elephant.jpg', 10, 7, 9.90),
 (3, 'Hornbill', 'uploads/hornbill.jpg', 2, 5, 6.00),
 (4, 'Parrot', 'uploads/parrot.jpg', 2, 5, 9.90),
-(5, 'Deer', 'uploads/deer.jpg', 1, 3, 10.00),
-(6, 'Orang Utan', 'uploads/orangutan.jpg', 1, 3, 12.50),
-(7, 'Proboscis', 'uploads/proboscis.jpg', 1, 4, 9.90),
+(5, 'Deer', 'uploads/deer.jpg', 11, 3, 10.00),
+(6, 'Orang Utan', 'uploads/orangutan.jpg', 13, 3, 12.50),
+(7, 'Proboscis', 'uploads/proboscis.jpg', 13, 4, 9.90),
 (8, 'Otter', 'uploads/otter.jpg', 1, 10, 6.50),
 (9, 'Rhino', 'uploads/rhino.jpg', 1, 4, 9.90),
 (10, 'Malaysia Civet', 'uploads/civet.jpg', 1, 12, 12.00),
