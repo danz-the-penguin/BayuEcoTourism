@@ -98,7 +98,7 @@ $rowcount = mysqli_num_rows($result);
     <?php include("userAuth/modalForm.php"); ?>
 
     <main>
-      <h2 style="text-align: center;">Explores</h2>
+      <h2 style="text-align: center;">Explore</h2>
       <div class="section">
         <table border="1" align="center">
           <tr>
@@ -121,7 +121,7 @@ $rowcount = mysqli_num_rows($result);
             echo '<div class="animal-card">';
             echo '<img src="' . htmlspecialchars($row["animalImg"]) . '" alt="' . htmlspecialchars($row["animalName"]) . '">';
             echo '<h3>' . htmlspecialchars($row["animalName"]) . '</h3>';
-            echo '<p>' . htmlspecialchars($row["animalDescription"]) . '</p>';
+            //echo '<p>' . htmlspecialchars($row["animalDescription"]) . '</p>';
 
             // Ticket booking form
             echo '<form method="post" action="ticket_action.php?action=add&id=' . $row['animalID'] . '">';
@@ -208,3 +208,7 @@ $rowcount = mysqli_num_rows($result);
 </body>
 
 </html>
+
+<!-- Warning: Undefined array key "animalDescription" in /Applications/XAMPP/xamppfiles/htdocs/ZooManagementSystem/explore.php on line 124
+
+Deprecated: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /Applications/XAMPP/xamppfiles/htdocs/ZooManagementSystem/explore.php on line 124 -->
