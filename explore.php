@@ -59,7 +59,7 @@ $rowcount = mysqli_num_rows($result);
 
     .animal-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 12px rgba(190, 27, 27, 0.46);
     }
 
     .animal-card img {
