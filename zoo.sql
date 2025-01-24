@@ -75,13 +75,16 @@ INSERT INTO `category` (`categoryID`, `categoryName`, `categoryDesc`, `createDat
 -- Table structure for table `animal`
 --
 
+-- Table structure for table `animal`
 CREATE TABLE `animal` (
-  `animalID` int(11) NOT NULL,
+  `animalID` int(11) NOT NULL AUTO_INCREMENT,
   `animalName` varchar(100) NOT NULL,
   `animalImg` varchar(100) NOT NULL,
   `categoryID` int(11) NOT NULL,
   `animalQty` int(11) NOT NULL,
-  `animalPrice` decimal(8,2) NOT NULL
+  `animalPrice` decimal(8,2) NOT NULL,
+  PRIMARY KEY (`animalID`),  -- Define primary key
+  KEY `categoryID` (`categoryID`)  -- Index for categoryID
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
