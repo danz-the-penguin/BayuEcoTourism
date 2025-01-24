@@ -53,21 +53,20 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`categoryID`, `categoryName`, `categoryDesc`, `createDate`) VALUES
-(1, 'animal', 'showing and feeding', '2024-12-03 16:00:00'),
-(2, 'birds', 'watching birds', '2024-12-04 11:38:01'),
-(3, 'reptiles', 'watching reptiles', '2024-12-10'),
-(4, 'marsupials', 'watching marsupials', '2024-12-10'),
-(5, 'rodents', 'watching rodents', '2024-12-24'),
-(6, 'amphibians', 'watching amphibians', '2024-12-24'),
-(7, 'aquatic', 'watching aquatic animals', '2024-12-24'),
-(8, 'insects', 'watching insects', '2024-12-24'),
-(9, 'felines', 'watching felines', '2024-12-24'),
-(10, 'proboscidea', 'watching proboscidea', '2024-12-24'),
-(11, 'ungulates', 'watching ungulates', '2024-12-24'),
-(12, 'carnivores', 'watching carnivores', '2024-12-24'),
-(13, 'primate', 'watching primates', '2024-12-24'),
-(14, 'suiformes', 'watching suiformes', '2024-12-24'),
-(15, 'nature', 'trails and view', '2024-12-04 11:38:01');
+(1, 'Animal', 'showing and feeding', '2024-12-03 16:00:00'),
+(2, 'Birds', 'watching birds', '2024-12-04 11:38:01'),
+(3, 'Reptiles', 'watching reptiles', '2024-12-10'),
+(4, 'Marsupials', 'watching marsupials', '2024-12-10'),
+(5, 'Rodents', 'watching rodents', '2024-12-24'),
+(6, 'Amphibians', 'watching amphibians', '2024-12-24'),
+(7, 'Aquatic', 'watching aquatic animals', '2024-12-24'),
+(8, 'Insects', 'watching insects', '2024-12-24'),
+(9, 'Felines', 'watching felines', '2024-12-24'),
+(10, 'Proboscidea', 'watching proboscidea', '2024-12-24'),
+(11, 'Ungulates', 'watching ungulates', '2024-12-24'),
+(12, 'Primate', 'watching primates', '2024-12-24'),
+(13, 'Suiformes', 'watching suiformes', '2024-12-24'),
+(14, 'Nature', 'trails and view', '2024-12-04 11:38:01');
 
 -- --------------------------------------------------------
 
