@@ -1,6 +1,12 @@
 <?php
+<?php
 // Database connection
-include 'dbconnect.php';
+session_start();
+include ('includes/dbconnection.php');
+error_reporting(0);
+if (strlen($_SESSION['zmsaid']==0)){
+    header('logout.php');
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_schedule'])) {
     $eventName = $_POST['event_name'];
