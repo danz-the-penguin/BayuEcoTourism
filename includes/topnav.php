@@ -1,6 +1,6 @@
 <nav class="topnav" id="myTopnav">
     <a href="index.php">Home</a>
-    <a href="explore.php">Explores</a>
+    <a href="explore.php">Explore</a>
     <a href="reservation.php">Reservation</a>
     <a href="events.php">Events</a>
     <a href="review.php">Review</a>
