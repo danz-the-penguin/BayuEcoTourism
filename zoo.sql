@@ -72,23 +72,23 @@ INSERT INTO `category` (`categoryID`, `categoryName`, `categoryDesc`, `createDat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Table structure for table `animal`
 --
 
-CREATE TABLE `product` (
-  `productID` int(11) NOT NULL,
-  `productName` varchar(100) NOT NULL,
-  `productImg` varchar(100) NOT NULL,
+CREATE TABLE `animal` (
+  `animalID` int(11) NOT NULL,
+  `animalName` varchar(100) NOT NULL,
+  `animalImg` varchar(100) NOT NULL,
   `categoryID` int(11) NOT NULL,
-  `productQty` int(11) NOT NULL,
-  `productPrice` decimal(8,2) NOT NULL
+  `animalQty` int(11) NOT NULL,
+  `animalPrice` decimal(8,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `product`
+-- Dumping data for table `animal`
 --
 
-INSERT INTO `product` (`productID`, `productName`, `productImg`, `categoryID`, `productQty`, `productPrice`) VALUES
+INSERT INTO `animal` (`animalID`, `animalName`, `animalImg`, `categoryID`, `animalQty`, `animalPrice`) VALUES
 (1, 'Tiger', 'uploads/tiger.jpg', 9, 5, 8.90),
 (2, 'Elephant', 'uploads/elephant.jpg', 10, 7, 9.90),
 (3, 'Hornbill', 'uploads/hornbill.jpg', 2, 5, 6.00),
@@ -137,7 +137,7 @@ INSERT INTO `reservation` (`reservationID`, `userID`, `orderAmt`, `reservationDa
 CREATE TABLE `reservation_detail` (
   `lineID` int(11) NOT NULL,
   `reservationID` int(11) NOT NULL,
-  `productID` int(11) NOT NULL,
+  `animalID` int(11) NOT NULL,
   `orderQuantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -145,7 +145,7 @@ CREATE TABLE `reservation_detail` (
 -- Dumping data for table `reservation_detail`
 --
 
-INSERT INTO `reservation_detail` (`lineID`, `reservationID`, `productID`, `orderQuantity`) VALUES
+INSERT INTO `reservation_detail` (`lineID`, `reservationID`, `animalID`, `orderQuantity`) VALUES
 (1, 5, 7, 1),
 (2, 5, 10, 1),
 (3, 7, 7, 1),
@@ -166,7 +166,7 @@ CREATE TABLE `review` (
   `reservationID` int(11) NOT NULL,
   `reviewText` text NOT NULL,
   `rating` int(11) NOT NULL,
-  `productID` int(11) NOT NULL,
+  `animalID` int(11) NOT NULL,
   `reviewBy` int(11) NOT NULL,
   `reviewDate` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -216,10 +216,10 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`categoryID`);
 
 --
--- Indexes for table `product`
+-- Indexes for table `animal`
 --
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`productID`),
+ALTER TABLE `animal`
+  ADD PRIMARY KEY (`animalID`),
   ADD KEY `categoryID` (`categoryID`);
 
 --
@@ -239,7 +239,7 @@ ADD COLUMN pricePerTicket DECIMAL(10, 2) NOT NULL;
 --
 ALTER TABLE `reservation_detail`
   ADD PRIMARY KEY (`lineID`),
-  ADD KEY `productID` (`productID`),
+  ADD KEY `animalID` (`animalID`),
   ADD KEY `reservationID` (`reservationID`);
 
 --
@@ -248,7 +248,7 @@ ALTER TABLE `reservation_detail`
 ALTER TABLE `review`
   ADD PRIMARY KEY (`reviewID`),
   ADD KEY `userID` (`reviewBy`),
-  ADD KEY `productID` (`productID`);
+  ADD KEY `animalID` (`animalID`);
 
 --
 -- Indexes for table `user`
@@ -274,10 +274,10 @@ ALTER TABLE `category`
   MODIFY `categoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `product`
+-- AUTO_INCREMENT for table `animal`
 --
-ALTER TABLE `product`
-  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+ALTER TABLE `animal`
+  MODIFY `animalID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `reservation`
@@ -314,10 +314,10 @@ ALTER TABLE `blog`
   ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`createdBy`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `product`
+-- Constraints for table `animal`
 --
-ALTER TABLE `product`
-  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`categoryID`) REFERENCES `category` (`categoryID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `animal`
+  ADD CONSTRAINT `animal_ibfk_1` FOREIGN KEY (`categoryID`) REFERENCES `category` (`categoryID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `reservation`
@@ -329,7 +329,7 @@ ALTER TABLE `reservation`
 -- Constraints for table `reservation_detail`
 --
 ALTER TABLE `reservation_detail`
-  ADD CONSTRAINT `reservation_detail_ibfk_1` FOREIGN KEY (`productID`) REFERENCES `product` (`productID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `reservation_detail_ibfk_1` FOREIGN KEY (`animalID`) REFERENCES `animal` (`animalID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `reservation_detail_ibfk_2` FOREIGN KEY (`reservationID`) REFERENCES `reservation` (`reservationID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -337,7 +337,7 @@ ALTER TABLE `reservation_detail`
 --
 ALTER TABLE `review`
   ADD CONSTRAINT `review_ibfk_1` FOREIGN KEY (`reviewBy`) REFERENCES `user` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `review_ibfk_2` FOREIGN KEY (`productID`) REFERENCES `product` (`productID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `review_ibfk_2` FOREIGN KEY (`animalID`) REFERENCES `animal` (`animalID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
