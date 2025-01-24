@@ -1,6 +1,6 @@
 <?php
 //include db config
-session_start();
+//session_start();
 include("config/config.php");
 ?>
 <!DOCTYPE html>
