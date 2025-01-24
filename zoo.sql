@@ -61,6 +61,7 @@ INSERT INTO `category` (`categoryID`, `categoryName`, `categoryDesc`, `createDat
 (6, 'amphibians', 'watching amphibians', '2024-12-24'),
 (7, 'aquatic', 'watching aquatic animals', '2024-12-24'),
 (8, 'insects', 'watching insects', '2024-12-24'),
+(9, 'felines', 'watching felines', '2024-12-24'),
 (10, 'nature', 'trails and view', '2024-12-04 11:38:01');
 
 -- --------------------------------------------------------
