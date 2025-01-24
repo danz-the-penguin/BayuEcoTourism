@@ -53,9 +53,15 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`categoryID`, `categoryName`, `categoryDesc`, `createDate`) VALUES
-(1, 'animal', 'shhowing and feeding', '2024-12-03 16:00:00'),
+(1, 'animal', 'showing and feeding', '2024-12-03 16:00:00'),
 (2, 'birds', 'watching birds', '2024-12-04 11:38:01'),
-(3, 'nature', 'trails and view', '2024-12-04 11:38:01');
+(3, 'reptiles', 'watching reptiles', '2024-12-10'),
+(4, 'marsupials', 'watching marsupials', '2024-12-10'),
+(5, 'rodents', 'watching rodents', '2024-12-24'),
+(6, 'amphibians', 'watching amphibians', '2024-12-24'),
+(7, 'aquatic', 'watching aquatic animals', '2024-12-24'),
+(8, 'insects', 'watching insects', '2024-12-24'),
+(10, 'nature', 'trails and view', '2024-12-04 11:38:01');
 
 -- --------------------------------------------------------
 
