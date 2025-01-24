@@ -1,0 +1,59 @@
+<?php
+// Database connection
+include 'dbconnect.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_schedule'])) {
+    $eventName = $_POST['event_name'];
+    $dateTime = $_POST['date_time'];
+    $description = $_POST['description'];
+
+    $query = "INSERT INTO tblschedules (EventName, DateTime, Description) VALUES ('$eventName', '$dateTime', '$description')";
+    if (mysqli_query($conn, $query)) {
+        echo "Schedule added successfully!";
+    } else {
+        echo "Error: " . mysqli_error($conn);
+    }
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zoo Schedule Management</title>
+</head>
+<body>
+    <h1>Manage Zoo Schedules</h1>
+    <form method="POST">
+        <label>Event Name:</label>
+        <input type="text" name="event_name" required>
+        <br>
+        <label>Date & Time:</label>
+        <input type="datetime-local" name="date_time" required>
+        <br>
+        <label>Description:</label>
+        <textarea name="description"></textarea>
+        <br>
+        <button type="submit" name="add_schedule">Add Schedule</button>
+    </form>
+    <hr>
+    <h2>Existing Schedules</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Event Name</th>
+            <th>Date & Time</th>
+            <th>Description</th>
+        </tr>
+        <?php
+        $result = mysqli_query($conn, "SELECT * FROM tblschedules");
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>
+                    <td>{$row['ID']}</td>
+                    <td>{$row['EventName']}</td>
+                    <td>{$row['DateTime']}</td>
+                    <td>{$row['Description']}</td>
+                  </tr>";
+        }
+        ?>
+    </table>
+</body>
+</html>
