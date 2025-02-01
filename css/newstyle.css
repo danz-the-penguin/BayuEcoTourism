@@ -38,8 +38,8 @@ table {
     border-collapse: collapse;
     text-align: center;  
     padding: 20px;
-    background-color: #f9f9f9; /* Optional: Light background color */
-    border: 1px solid #ddd;   /* Optional: Light border around table */
+    background-color: #c2ebca; /* Optional: Light background color */
+    border: 1px solid #e6efe8;   /* Optional: Light border around table */
     border-radius: 8px;       /* Optional: Rounded corners */
   }
 
